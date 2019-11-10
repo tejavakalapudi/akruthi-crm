@@ -1,9 +1,9 @@
-// import StatusModel from '../db_models/status';
+import StatusModel from '../db_models/status';
 
 const getStatuses = async (req, res, next) => {
   try {
-    // const response = await StatusModel.find().exec();
-    return res.send('Success!');
+    const response = await StatusModel.find().exec();
+    return res.send(response);
   } catch (error) {
     return next(error);
   }
