@@ -3,7 +3,7 @@
 const getStatuses = async (req, res, next) => {
   try {
     // const response = await StatusModel.find().exec();
-    return res.send("Success!");
+    return res.send('Success!');
   } catch (error) {
     return next(error);
   }
