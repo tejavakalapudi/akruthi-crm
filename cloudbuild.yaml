@@ -4,5 +4,5 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
   - name: "gcr.io/cloud-builders/gcloud"
-    args: ["app", "deploy", "app-yaml/app.yaml"]
+    args: ["app", "deploy"]
     timeout: "600s"
