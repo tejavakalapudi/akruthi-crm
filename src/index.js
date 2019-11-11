@@ -11,7 +11,7 @@ connectDb().then(async () => {
   }
   app.listen(config.port, () => {
     // winston.info(`API server listening at port ${config.port}`);
-    console.info(`API server listening at port ${config.port}`)
+    // console.info(`API server listening at port ${config.port}`)
   });
 });
 
