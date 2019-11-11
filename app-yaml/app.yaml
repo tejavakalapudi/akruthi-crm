@@ -12,7 +12,8 @@
 # limitations under the License.
 
 # [START gae_quickstart_yaml]
-runtime: nodejs10
+env: flex
+runtime: nodejs
 env_variables:
   DATABASE_URL: "mongodb+srv://tejavakalapudi:09401a04b3@cluster0-ccgpq.gcp.mongodb.net/test?retryWrites=true&w=majority"
 # [END gae_quickstart_yaml]
