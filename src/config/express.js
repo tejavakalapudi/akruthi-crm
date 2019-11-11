@@ -1,12 +1,12 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { errors } from 'celebrate';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import bearerToken from 'express-bearer-token';
 import Boom, { isBoom, boomify } from '@hapi/boom';
 import routes from '../apis';
 import specs from './swagger/docs_generator';
-import winston from './winston';
+// import winston from './winston';
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(errors());
 
 // logger
-app.use(morgan('combined', { stream: winston.stream }));
+// app.use(morgan('combined', { stream: winston.stream }));
 
 app.use((req, res, next) => {
   next(Boom.notFound());
@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
         : { status: err.status || 500 };
 
     // add this line to include winston logging
-    winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+    // winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
     boomed = boomify(err, errorResponse);
   } else {
     boomed = err;

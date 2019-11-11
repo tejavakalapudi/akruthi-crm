@@ -13,6 +13,7 @@
   "author": "Raviteja Vakalapudi",
   "license": "unlicensed",
   "dependencies": {
+    "@google-cloud/logging-winston": "^3.0.0",
     "@hapi/boom": "^8.0.1",
     "akamai-edgeauth": "^0.2.0",
     "app-root-path": "^2.2.1",

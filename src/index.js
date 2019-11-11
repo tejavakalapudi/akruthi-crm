@@ -1,6 +1,6 @@
 import app from './config/express';
 import config from './config/env';
-import winston from './config/winston';
+// import winston from './config/winston';
 import { connectDb } from './config/mongo';
 
 const eraseDatabaseOnSync = true;
@@ -10,7 +10,8 @@ connectDb().then(async () => {
     // await Promise.all(models.forEach(model => model.deleteMany({})));
   }
   app.listen(config.port, () => {
-    winston.info(`API server listening at port ${config.port}`);
+    // winston.info(`API server listening at port ${config.port}`);
+    console.info(`API server listening at port ${config.port}`)
   });
 });
 

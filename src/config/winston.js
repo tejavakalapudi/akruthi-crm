@@ -1,5 +1,7 @@
 import appRoot from 'app-root-path';
 import { createLogger as CreateLogger, transports, format } from 'winston';
+import {LoggingWinston} from '@google-cloud/logging-winston';
+const loggingWinston = new LoggingWinston();
 
 // define the custom settings for each transport (file, console)
 const options = {
