@@ -26,10 +26,6 @@ export function clean() {
   return del(["./dist/**"]);
 }
 
-export function removeNodeModules() {
-  return del(["./node_modules", "./package-lock.json"]);
-}
-
 export function babel() {
   return src(paths.js)
     .pipe(sourceMapsPlugin.init())

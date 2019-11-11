@@ -7,7 +7,6 @@
     "start": "node ./dist/index.js",
     "start:dev": "dotenv -e .env gulp start",
     "lint": "gulp lint",
-    "clean": "gulp removeNodeModules",
     "build": "gulp build",
     "init-docker": "docker run -d -p 8000:8000 amazon/dynamodb-local"
   },
