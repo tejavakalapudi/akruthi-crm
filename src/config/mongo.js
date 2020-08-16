@@ -18,6 +18,7 @@ export default async client_name => {
   await schemaRoutes.map(async schemaUri => {
     const schema = await import(`./${schemaUri}`);
 
+    // get schema name from the schema file name
     const schemaName = schemaUri
       .split('/')
       .slice(-1)[0]
