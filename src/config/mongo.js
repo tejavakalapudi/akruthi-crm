@@ -1,18 +1,11 @@
 import mongoose from 'mongoose';
-import glob from 'glob';
 import config from './env';
 
-export const connectDb = () => {
-  return mongoose.connect(config.DATABASE_URL, { useNewUrlParser: true });
+export default async client_name => {
+  return mongoose.createConnection(config.DB_URI, {
+    useNewUrlParser: true,
+    dbName: client_name,
+    user: config.DB_USER,
+    pass: config.DB_PASS,
+  });
 };
-
-const modelRoutes = glob.sync('../apis/**/db_models/*.js', {
-  cwd: __dirname,
-});
-
-const models = modelRoutes.map(async modelUri => {
-  const model = await import(`./${modelUri}`);
-  return model.default;
-});
-
-export default models;

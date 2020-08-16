@@ -1,12 +1,10 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { errors } from 'celebrate';
-// import morgan from 'morgan';
 import bearerToken from 'express-bearer-token';
 import Boom, { isBoom, boomify } from '@hapi/boom';
 import routes from '../apis';
 import specs from './swagger/docs_generator';
-// import winston from './winston';
 
 const app = express();
 
@@ -21,9 +19,6 @@ app.use('/api/v1', routes);
 
 app.use(express.json());
 app.use(errors());
-
-// logger
-// app.use(morgan('combined', { stream: winston.stream }));
 
 app.use((req, res, next) => {
   next(Boom.notFound());
