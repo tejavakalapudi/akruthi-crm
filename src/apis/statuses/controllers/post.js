@@ -1,10 +1,10 @@
-import StatusSchema from '../schemas/status';
+import dbModels from '../../../db_models';
 
 const createStatus = async (req, res, next) => {
-  const StatusModel = global.dbConnection.model('User', StatusSchema);
+  const statusModel = { dbModels };
 
   try {
-    const response = await StatusModel.create({ ...req.body });
+    const response = await statusModel.create({ ...req.body });
     return res.send(response);
   } catch (error) {
     return next(error);
