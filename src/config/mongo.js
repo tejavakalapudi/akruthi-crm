@@ -19,6 +19,7 @@ export default async client_name => {
     const schema = await import(`./${schemaUri}`);
 
     // get schema name from the schema file name
+    // Sample
     const schemaName = schemaUri
       .split('/')
       .slice(-1)[0]
