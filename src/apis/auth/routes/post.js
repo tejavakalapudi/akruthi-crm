@@ -1,7 +1,8 @@
 import express from 'express';
 import { celebrate, Joi } from 'celebrate';
 import createAuth from '../controllers/post';
-import createConnection from '../../../helpers/createConnection';
+import createConnection from '../../../middlewares/createConnection';
+import authHelper from '../../../middlewares/authHelper';
 
 const router = express.Router();
 
@@ -13,6 +14,6 @@ const schema = {
     .required(),
 };
 
-router.post('/', celebrate(schema), createConnection, createAuth);
+router.post('/', celebrate(schema), authHelper, createConnection, createAuth);
 
 export default router;

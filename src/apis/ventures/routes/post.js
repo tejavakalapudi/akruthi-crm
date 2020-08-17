@@ -1,6 +1,7 @@
 import express from 'express';
 import { celebrate, Joi } from 'celebrate';
 import createVenture from '../controllers/post';
+import verifyAuth from '../../../middlewares/authHelper';
 
 const router = express.Router();
 
@@ -15,6 +16,6 @@ const schema = {
     .required(),
 };
 
-router.post('/', celebrate(schema), createVenture);
+router.post('/', celebrate(schema), verifyAuth, createVenture);
 
 export default router;
