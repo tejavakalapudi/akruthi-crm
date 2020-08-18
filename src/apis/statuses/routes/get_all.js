@@ -1,9 +1,9 @@
 import express from 'express';
 import getStatuses from '../controllers/get_all';
-import verifyAuth from '../../../middlewares/authHelper';
+import validateAuth from '../../../middlewares/validateAuth';
 
 const router = express.Router();
 
-router.get('/', verifyAuth, getStatuses);
+router.get('/', validateAuth, getStatuses);
 
 export default router;
