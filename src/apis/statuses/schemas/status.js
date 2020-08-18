@@ -5,10 +5,7 @@ const statusSchema = new Schema({
     type: String,
     unique: true,
   },
-  phase: {
-    type: Map,
-    of: String,
-  },
+  phase: [{ type: String }],
 });
 
 export default statusSchema;
