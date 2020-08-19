@@ -9,8 +9,8 @@ const employeeSchema = new Schema(
       unique: true,
     },
     leads: [{ type: String }],
-    conversion: [{ type: String }],
-    registration: [{ type: String }],
+    conversions: [{ type: String }],
+    registrations: [{ type: String }],
     contact: { type: String },
   },
   { timestamps: true }

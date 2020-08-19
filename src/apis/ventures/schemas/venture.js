@@ -1,18 +1,22 @@
 import { Schema } from 'mongoose';
+import uuid from 'uuid';
 
 const ventureSchema = new Schema({
+  _id: { type: String, default: uuid.v4 },
   name: {
     type: String,
     unique: true,
   },
-  flats: {
-    type: Map,
-    of: String,
-  },
-  available: {
-    type: Map,
-    of: String,
-  },
+  flats: [
+    {
+      type: String,
+    },
+  ],
+  available: [
+    {
+      type: String,
+    },
+  ],
 });
 
 export default ventureSchema;

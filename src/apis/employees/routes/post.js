@@ -1,7 +1,7 @@
 import express from 'express';
 import { celebrate, Joi } from 'celebrate';
 import createEmployee from '../controllers/post';
-import verifyAuth from '../../../middlewares/authHelper';
+import validateAuth from '../../../middlewares/validateAuth';
 
 const router = express.Router();
 const schema = {
@@ -11,16 +11,16 @@ const schema = {
       leads: Joi.array()
         .items(Joi.string())
         .required(),
-      conversion: Joi.array()
+      conversions: Joi.array()
         .items(Joi.string())
         .required(),
-      registration: Joi.array()
+      registrations: Joi.array()
         .items(Joi.string())
         .required(),
       contact: Joi.string().required(),
     })
     .required(),
 };
-router.post('/', celebrate(schema), verifyAuth, createEmployee);
+router.post('/', celebrate(schema), validateAuth, createEmployee);
 
 export default router;

@@ -1,10 +1,9 @@
 import express from 'express';
 import { celebrate, Joi } from 'celebrate';
-import createVenture from '../controllers/post';
+import updateVenture from '../controllers/update';
 import validateAuth from '../../../middlewares/validateAuth';
 
 const router = express.Router();
-
 const schema = {
   body: Joi.object()
     .keys({
@@ -18,7 +17,5 @@ const schema = {
     })
     .required(),
 };
-
-router.post('/', celebrate(schema), validateAuth, createVenture);
-
+router.put('/:id', celebrate(schema), validateAuth, updateVenture);
 export default router;
