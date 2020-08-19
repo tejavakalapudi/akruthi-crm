@@ -4,12 +4,16 @@ import config from './env';
 import dataModels from '../db_models';
 
 export default async client_name => {
+  console.log(`Creating Mongoose connection for client: ${client_name}`);
+
   global.dbConnection = await mongoose.createConnection(config.DB_URI, {
     useNewUrlParser: true,
     dbName: client_name,
     user: config.DB_USER,
     pass: config.DB_PASS,
   });
+
+  console.log('Mongoose connection created');
 
   const schemaRoutes = glob.sync('../apis/**/schemas/*.js', {
     cwd: __dirname,
@@ -26,6 +30,8 @@ export default async client_name => {
 
     dataModels[`${schemaName}Model`] = global.dbConnection.model(schemaName, schema.default);
   });
+
+  console.log('Mongoose models setup complete');
 
   return global.dbConnection;
 };
