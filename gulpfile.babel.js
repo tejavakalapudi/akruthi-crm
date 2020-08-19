@@ -23,7 +23,7 @@ export function lint() {
 
 // clean
 export function clean() {
-  return del(['./dist/**']);
+  return del(['dist/**/*.*']);
 }
 
 export function babel() {
