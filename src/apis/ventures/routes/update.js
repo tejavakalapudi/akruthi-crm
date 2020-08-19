@@ -7,13 +7,9 @@ const router = express.Router();
 const schema = {
   body: Joi.object()
     .keys({
-      name: Joi.string().required(),
-      flats: Joi.array()
-        .items(Joi.string())
-        .required(),
-      available: Joi.array()
-        .items(Joi.string())
-        .required(),
+      name: Joi.string(),
+      flats: Joi.array().items(Joi.string()),
+      available: Joi.array().items(Joi.string()),
     })
     .required(),
 };

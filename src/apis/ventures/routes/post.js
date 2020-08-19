@@ -12,9 +12,7 @@ const schema = {
       flats: Joi.array()
         .items(Joi.string())
         .required(),
-      available: Joi.array()
-        .items(Joi.string())
-        .required(),
+      available: Joi.array().items(Joi.string()),
     })
     .required(),
 };
