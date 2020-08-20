@@ -29,7 +29,7 @@ app.use((err, req, res, next) => {
   let boomed;
   if (!isBoom(err)) {
     const errorResponse =
-      req.app.get('env') === 'development'
+      req.app.get('env') === 'dev'
         ? {
             statusCode: err.status || 500,
             message: err.message,
@@ -38,12 +38,22 @@ app.use((err, req, res, next) => {
 
     // add this line to include winston logging
     // winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+
+    if (errorResponse.statusCode === 500 && req.app.get('env') === 'dev') {
+      console.error(`
+      =================================================================================
+      =================================================================================
+              INTERNAL SERVER ERROR: ${errorResponse.message}
+      =================================================================================
+      =================================================================================
+      `);
+    }
+
     boomed = boomify(err, errorResponse);
   } else {
     boomed = err;
   }
   // set locals, only providing error in development
-
   return res.status(boomed.output.statusCode).json({ ...boomed.output.payload, ...boomed.data });
 });
 export default app;
