@@ -3,4 +3,5 @@ export default {
   statusModel: {},
   ventureModel: {},
   employeeModel: {},
+  leadModel: {},
 };
