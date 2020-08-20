@@ -2,6 +2,7 @@ import express from 'express';
 import { celebrate, Joi } from 'celebrate';
 import createEmployee from '../controllers/post';
 import validateAuth from '../../../middlewares/validateAuth';
+import validateAdmin from '../../../middlewares/validateAdmin';
 
 const router = express.Router();
 const schema = {
@@ -21,6 +22,6 @@ const schema = {
     })
     .required(),
 };
-router.post('/', celebrate(schema), validateAuth, createEmployee);
+router.post('/', celebrate(schema), validateAuth, validateAdmin, createEmployee);
 
 export default router;
