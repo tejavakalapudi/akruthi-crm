@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/index.js",
+    "start": "dotenv -e .env node ./dist/index.js",
     "start:dev": "dotenv -e .env gulp start",
     "lint": "gulp lint",
     "build": "gulp build",
-    "lint-watch": "gulp lintWatch"
+    "lint-watch": "gulp lintWatch",
+    "create-env": "printenv > .env"
   },
   "author": "Raviteja Vakalapudi",
   "license": "unlicensed",

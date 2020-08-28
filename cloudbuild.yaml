@@ -1,6 +1,8 @@
 steps:
   - name: "gcr.io/cloud-builders/npm"
     args: ["install"]
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["run", "create-env"]
     env:
       - "DB_URI=${_DB_URI}"
       - "DB_USER=${_DB_USER}"
