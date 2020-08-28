@@ -13,8 +13,4 @@
 
 # [START gae_quickstart_yaml]
 runtime: nodejs10
-env_variables:
-  DB_URI: "mongodb+srv://cluster0-ccgpq.gcp.mongodb.net/"
-  DB_USER: "tejavakalapudi"
-  DB_PASS: "09401a04b3"
 # [END gae_quickstart_yaml]
