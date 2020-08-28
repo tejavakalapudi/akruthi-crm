@@ -4,7 +4,7 @@ import config from './env';
 import dataModels from '../db_models';
 
 export default async client_name => {
-  console.log(`Creating Mongoose connection for client: ${client_name}`);
+  console.log(`Creating Mongoose connection for client: ${client_name}, ${config.DB_URI}, ${config.DB_USER}`);
 
   global.dbConnection = await mongoose.createConnection(config.DB_URI, {
     useNewUrlParser: true,
