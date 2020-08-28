@@ -1,5 +1,6 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 import { errors } from 'celebrate';
 import bearerToken from 'express-bearer-token';
 import Boom, { isBoom, boomify } from '@hapi/boom';
@@ -7,6 +8,8 @@ import routes from '../apis';
 import specs from './swagger/docs_generator';
 
 const app = express();
+
+app.use(cors({ origin: '*' }));
 
 // Body parser
 app.use(express.json());
