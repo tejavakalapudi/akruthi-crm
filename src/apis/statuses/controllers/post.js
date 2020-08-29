@@ -1,7 +1,8 @@
-import dbModels from '../../../db_models';
+import StatusSchema from '../schemas/status';
+import { getModelByClient } from '../../../config/mongo';
 
 const createStatus = async (req, res, next) => {
-  const { statusModel } = dbModels;
+  const statusModel = await getModelByClient('status', StatusSchema);
   try {
     const response = await statusModel.create(req.body);
     return res.send(response);

@@ -1,7 +1,8 @@
-import db_models from '../../../db_models';
+import VentureSchema from '../schemas/venture';
+import { getModelByClient } from '../../../config/mongo';
 
 const updateVenture = async (req, res, next) => {
-  const { ventureModel } = db_models;
+  const ventureModel = await getModelByClient('venture', VentureSchema);
   try {
     const response = await ventureModel.findByIdAndUpdate(req.params.id, req.body);
     return res.send(response);

@@ -6,6 +6,7 @@ import bearerToken from 'express-bearer-token';
 import Boom, { isBoom, boomify } from '@hapi/boom';
 import routes from '../apis';
 import specs from './swagger/docs_generator';
+import createConnection from '../middlewares/createConnection';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(bearerToken());
 
 app.use('/api-docs/v1', swaggerUi.serve, swaggerUi.setup(specs));
+app.use(createConnection);
 app.use('/api/v1', routes);
 
 app.use(express.json());

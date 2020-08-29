@@ -1,7 +1,9 @@
-import db_Models from '../../../db_models';
+import EmployeeSchema from '../schemas/employee';
+import { getModelByClient } from '../../../config/mongo';
 
 const getEmployeeById = async (req, res, next) => {
-  const { employeeModel } = db_Models;
+  const employeeModel = await getModelByClient('employees', EmployeeSchema);
+
   try {
     const response = await employeeModel.find({ _id: req.params.id }).exec();
     return res.send(response);

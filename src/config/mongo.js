@@ -1,38 +1,44 @@
 import mongoose from 'mongoose';
-import glob from 'glob';
+import Boom from '@hapi/boom';
 import config from './env';
-import dataModels from '../db_models';
 
-export default async client_name => {
-  console.log(`Creating Mongoose connection for client: ${client_name}, ${config.DB_URI}, ${config.DB_USER}`);
-
-  global.dbConnection = await mongoose.createConnection(config.DB_URI, {
+const connect = dbUrl =>
+  mongoose.createConnection(dbUrl, {
     useNewUrlParser: true,
-    dbName: client_name,
     user: config.DB_USER,
     pass: config.DB_PASS,
   });
 
-  console.log('Mongoose connection created');
-
-  const schemaRoutes = glob.sync('../apis/**/schemas/*.js', {
-    cwd: __dirname,
+const connectToMongoDB = () => {
+  const db = connect(config.DB_URI);
+  db.on('open', () => {
+    console.info(`Mongoose connection open to ${JSON.stringify(config.DB_URI)}`);
   });
-
-  await schemaRoutes.map(async schemaUri => {
-    const schema = await import(`./${schemaUri}`);
-
-    // get schema name from the schema file name
-    // Sample
-    const schemaName = schemaUri
-      .split('/')
-      .slice(-1)[0]
-      .split('.js')[0];
-
-    dataModels[`${schemaName}Model`] = global.dbConnection.model(schemaName, schema.default);
+  db.on('error', err => {
+    console.info(`Mongoose connection error: ${err} with connection info ${JSON.stringify(config.DB_URI)}`);
+    process.exit(0);
   });
+  return db;
+};
 
-  console.log('Mongoose models setup complete');
+export const mongodb = connectToMongoDB();
 
-  return global.dbConnection;
+export const getModelByClient = async (modelName, schema) => global.dbConnection.model(modelName, schema);
+
+/**
+ * Creating New MongoDb Connection obect by Switching DB
+ */
+export default async client_name => {
+  if (mongodb) {
+    try {
+      // useDb will return new connection
+      global.dbConnection = await mongodb.useDb(client_name, { useCache: true });
+      console.log(`DB switched to ${client_name}`);
+      return global.dbConnection;
+    } catch (error) {
+      console.log(`DB switch failed with`, error);
+      throw Boom.serverUnavailable('Other Err');
+    }
+  }
+  throw Boom.serverUnavailable('unavailable');
 };

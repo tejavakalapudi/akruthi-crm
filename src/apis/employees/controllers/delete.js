@@ -1,10 +1,11 @@
-import db_Models from '../../../db_models';
+import EmployeeSchema from '../schemas/employee';
+import { getModelByClient } from '../../../config/mongo';
 
 const deleteEmployee = async (req, res, next) => {
-  const { employeeModel } = db_Models;
+  const employeeModel = await getModelByClient('employees', EmployeeSchema);
+
   try {
     const response = await employeeModel.findByIdAndDelete(req.params.id);
-
     return res.send(response);
   } catch (error) {
     return next(error);
