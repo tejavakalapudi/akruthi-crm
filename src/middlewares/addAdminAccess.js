@@ -3,7 +3,7 @@ import firebaseAuth, { firebaseDB } from '../config/firebase';
 
 export default async (req, res, next) => {
   try {
-    const clientCollection = firebaseDB.collection('akruthi-crm').doc(req.body.client_name);
+    const clientCollection = firebaseDB.collection('akruthi-crm').doc(req.headers['x-client-id']);
     const clientDoc = await clientCollection.get();
     const userRecord = res.locals.user;
 
