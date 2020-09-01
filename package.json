@@ -9,7 +9,8 @@
     "lint": "gulp lint",
     "build": "gulp build",
     "lint-watch": "gulp lintWatch",
-    "create-env": "printenv > .env"
+    "create-env": "printenv > .env",
+    "seed:db": "dotenv -e .env babel-node seeds"
   },
   "author": "Raviteja Vakalapudi",
   "license": "unlicensed",
@@ -22,6 +23,7 @@
     "celebrate": "^10.0.1",
     "chance": "^1.1.0",
     "cors": "^2.8.5",
+    "dotenv-cli": "^2.0.1",
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
     "firebase-admin": "^9.1.0",
@@ -32,8 +34,7 @@
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.0.7",
     "uuid": "^3.3.3",
-    "winston": "^3.2.1",
-    "dotenv-cli": "^2.0.1"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
