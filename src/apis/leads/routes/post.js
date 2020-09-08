@@ -2,7 +2,8 @@ import express from 'express';
 import { celebrate, Joi } from 'celebrate';
 import createLead from '../controllers/post';
 import validateAuth from '../../../middlewares/validateAuth';
-// import validateAdmin from '../../../middlewares/validateAdmin';
+import validateEmployee from '../../../middlewares/validateEmployee';
+import validateVenture from '../../../middlewares/validateVenture';
 
 const router = express.Router();
 const schema = {
@@ -18,5 +19,6 @@ const schema = {
     })
     .required(),
 };
-router.post('/', celebrate(schema), validateAuth, createLead);
+
+router.post('/', celebrate(schema), validateAuth, validateEmployee, validateVenture, createLead);
 export default router;
