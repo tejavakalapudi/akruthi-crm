@@ -16,6 +16,7 @@ const getAllLeads = async (req, res, next) => {
 
     delete filters.limit;
     delete filters.page;
+    delete filters.sort_by;
 
     if (req.query.employee_assigned) {
       delete filters.employee_assigned;
@@ -56,6 +57,7 @@ const getAllLeads = async (req, res, next) => {
       .find(filters)
       .limit(limit)
       .skip((page - 1) * limit)
+      .sort([['updatedAt', req.query.sort_by.date]])
       .exec();
     const totalItems = await leadModel.countDocuments(filters);
 
@@ -71,4 +73,7 @@ const getAllLeads = async (req, res, next) => {
     return next(error);
   }
 };
+
 export default getAllLeads;
+
+// https://kb.objectrocket.com/mongo-db/mongoose-sort-multiple-fields-609

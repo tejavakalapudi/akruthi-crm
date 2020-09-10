@@ -15,6 +15,11 @@ const schema = {
     source: Joi.string(),
     page: Joi.number().default(1),
     limit: Joi.number().default(20),
+    sort_by: Joi.object({
+      date: Joi.string(),
+    }).default({
+      date: 'desc',
+    }),
   },
 };
 
