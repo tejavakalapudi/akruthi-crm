@@ -13,6 +13,8 @@ const schema = {
     pre_sale: Joi.boolean(),
     post_sale: Joi.boolean(),
     source: Joi.string(),
+    page: Joi.number().default(1),
+    limit: Joi.number().default(20),
   },
 };
 

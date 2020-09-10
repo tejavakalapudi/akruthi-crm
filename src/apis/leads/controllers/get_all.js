@@ -12,6 +12,11 @@ const getAllLeads = async (req, res, next) => {
     let filters = JSON.parse(JSON.stringify(req.query));
     let employeeAssigned;
 
+    const { limit, page } = filters;
+
+    delete filters.limit;
+    delete filters.page;
+
     if (req.query.employee_assigned) {
       delete filters.employee_assigned;
 
@@ -47,9 +52,21 @@ const getAllLeads = async (req, res, next) => {
       }
     }
 
-    const response = await leadModel.find(filters).exec();
+    const data = await leadModel
+      .find(filters)
+      .limit(limit)
+      .skip((page - 1) * limit)
+      .exec();
+    const totalItems = await leadModel.countDocuments(filters);
 
-    return res.send(response);
+    return res.send({
+      data,
+      pagination: {
+        current: page,
+        total: Math.ceil(totalItems / limit),
+        totalItems,
+      },
+    });
   } catch (error) {
     return next(error);
   }
