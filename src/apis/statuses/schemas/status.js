@@ -8,7 +8,7 @@ const statusSchema = new Schema(
       type: String,
       unique: true,
     },
-    phase: [{ type: String }],
+    phase: { type: String },
   },
   { timestamps: true }
 );
