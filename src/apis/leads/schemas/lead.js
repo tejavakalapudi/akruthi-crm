@@ -8,7 +8,7 @@ const leadSchema = new Schema(
     email: { type: String },
     contact: { type: String, unique: true },
     venture: { _id: String, name: String },
-    flat_No: { type: String },
+    flat_no: { type: String },
     status: { type: String, default: 'lead_generated' },
     employee_assigned: { _id: String, name: String },
     source: { type: String, default: 'walk_in' },
