@@ -17,7 +17,12 @@ const schema = {
       status: Joi.string(),
       employee_assigned: Joi.string().guid(),
       source: Joi.string(),
-      note: Joi.string(),
+      notes: Joi.array().items(
+        Joi.object().keys({
+          text: Joi.string(),
+          source: Joi.string(),
+        })
+      ),
       followup_required: Joi.bool(),
       visit_scheduled: Joi.bool(),
     })

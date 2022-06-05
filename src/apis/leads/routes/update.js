@@ -11,11 +11,20 @@ const schema = {
     .keys({
       customer_name: Joi.string(),
       contact: Joi.string(),
+      email: Joi.string().email(),
       venture: Joi.string().guid(),
-      flat_No: Joi.string(),
+      flat_no: Joi.string(),
       status: Joi.string(),
       employee_assigned: Joi.string().guid(),
       source: Joi.string(),
+      notes: Joi.array().items(
+        Joi.object().keys({
+          text: Joi.string(),
+          source: Joi.string(),
+        })
+      ),
+      followup_required: Joi.bool(),
+      visit_scheduled: Joi.bool(),
     })
     .required(),
 };
