@@ -12,10 +12,16 @@ const schema = {
       customer_name: Joi.string(),
       contact: Joi.string(),
       email: Joi.string().email(),
-      venture: Joi.string().guid(),
+      venture: Joi.object().keys({
+        _id: Joi.string().guid(),
+        name: Joi.string(),
+      }),
       flat_no: Joi.string(),
       status: Joi.string(),
-      employee_assigned: Joi.string().guid(),
+      employee_assigned: Joi.object().keys({
+        _id: Joi.string().guid(),
+        name: Joi.string(),
+      }),
       source: Joi.string(),
       notes: Joi.array().items(
         Joi.object().keys({

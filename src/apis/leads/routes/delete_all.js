@@ -6,7 +6,9 @@ import validateAuth from '../../../middlewares/validateAuth';
 const router = express.Router();
 
 const schema = {
-  body: Joi.array().items(Joi.string().guid()),
+  body: Joi.object().keys({
+    ids: Joi.array().items(Joi.string().guid()),
+  }),
 };
 
 router.delete('/', celebrate(schema), validateAuth, deleteLead);
