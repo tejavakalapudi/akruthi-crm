@@ -1,6 +1,7 @@
 import LeadSchema from '../src/apis/leads/schemas/lead';
 import { getModelByClient } from '../src/config/mongo';
 
+// Change visit_scheduled, followup, pre_sale, post_sale
 const leads = [
   {
     _id: '2e5c7541-2df3-4332-8f38-36d74db70c0e',

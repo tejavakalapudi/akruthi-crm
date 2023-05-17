@@ -29,8 +29,8 @@ const schema = {
           source: Joi.string(),
         })
       ),
-      followup_required: Joi.bool(),
-      visit_scheduled: Joi.bool(),
+      followup: Joi.date(),
+      visit_scheduled: Joi.date(),
     })
     .required(),
 };

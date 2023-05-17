@@ -14,7 +14,8 @@ const leadSchema = new Schema(
     source: { type: String, default: 'walk_in' },
     pre_sale: { type: Boolean, default: true },
     post_sale: { type: Boolean, default: false },
-    followup_required: { type: Boolean, default: true },
+    followup: { type: Date, default: '' },
+    visit_scheduled: { type: Date, default: '' },
     notes: [
       {
         text: { type: String },
