@@ -12,8 +12,6 @@ const leadSchema = new Schema(
     status: { type: String, default: 'lead_generated' },
     employee_assigned: { _id: String, name: String },
     source: { type: String, default: 'walk_in' },
-    pre_sale: { type: Boolean, default: true },
-    post_sale: { type: Boolean, default: false },
     followup: { type: Date, default: '' },
     visit_scheduled: { type: Date, default: '' },
     notes: [
