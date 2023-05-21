@@ -18,7 +18,7 @@ const leadSchema = new Schema(
       {
         text: { type: String },
         createdAt: { type: Date, default: Date.now },
-        source: { type: String, default: 'walk_in' },
+        source: { type: String, default: 'activity' },
       },
     ],
   },
