@@ -24,12 +24,12 @@ const schema = {
       }),
       source: Joi.string(),
       notes: Joi.array().items(
-        Joi.object()
-          .keys({
-            text: Joi.string(),
-            source: Joi.string(),
-          })
-          .allow(['_id', 'createdAt'])
+        Joi.object().keys({
+          text: Joi.string(),
+          source: Joi.string(),
+          _id: Joi.string(),
+          createdAt: Joi.string(),
+        })
       ),
       followup: Joi.date().allow(null),
       visit_scheduled: Joi.date().allow(null),
